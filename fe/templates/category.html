@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category | Book Online</title>
+    <link rel="stylesheet" type="text/css" href="./static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/category.css">
+    <link rel="icon" type="icon" href="./static/icon/bookonline-icon.ico">
+</head>
+<body style="position: relative;">
+    <div class="user-dashboard-wapper">
+        <div class="user-dashboard">
+            <a class="user-dashboard-item home" href="./home">
+                <button>Home</button>
+            </a>
+            <a class="user-dashboard-item category" href="./category">
+                <button>Category</button>
+            </a>
+            <a class="user-dashboard-item cart" href="#">
+                <button>Cart <span style="color: red">(99+)</span></button>
+            </a>
+            <a class="user-dashboard-item manage-order" href="#">
+                <button>Manage Order</button>
+            </a>
+            <a class="user-dashboard-item personal-info" href="#">
+                <button>Info</button>
+            </a>
+            <a class="user-dashboard-item logout" href="#">
+                <button style="color: red;">Logout</button>
+            </a>
+        </div>
+    </div>
+    <div class="item-content">
+        <div class="notification"></div>
+        <div class="categories-view">
+<!--            <div class="row-category-view">-->
+<!--                <div class="category-view-item">-->
+<!--                    <a class="category-view-item-img-wapper" href="./home?page=2&categoryId=2">-->
+<!--                        <img class="category-view-item-img" src="../static/category/image/toan_hoc_category.jpg">-->
+<!--                    </a>-->
+<!--                    <div class="category-view-item-text-content">-->
+<!--                        <div class="text-ellipsis category-view-item-title" title="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>-->
+<!--                        <div class="category-view-item-description">vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+        <div class="pagination-wapper">
+            <div class="pagination"></div>
+        </div>
+    </div>
+
+    <script src="./static/js/utils.js"></script>
+    <script type="module" src="./static/js/lazyloading.js"></script>
+    <script src="./static/js/pagination.js"></script>
+    <script type="module" src="./static/js/category.js"></script>
+</body>
+</html>

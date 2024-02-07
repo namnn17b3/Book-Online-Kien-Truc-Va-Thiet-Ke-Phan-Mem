@@ -1,0 +1,267 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Helvetica Neue";
+    background-color: #f4f4f5;
+}
+
+body>div {
+    margin: auto;
+}
+
+.user-dashboard-wapper {
+    margin-top: 30px;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+    width: 100%;
+    display: flex;
+}
+
+.user-dashboard {
+    margin: auto;
+}
+
+.user-dashboard-item {
+    text-decoration: none !important;
+    color: black;
+}
+
+.user-dashboard-item + .user-dashboard-item {
+    margin-left: 30px;
+}
+
+.user-dashboard-item button {
+    width: 100px;
+    height: 50px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.item-content-wapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.item-content {
+    position: relative;
+}
+
+.search-bar {
+    width: 370px;
+    height: 100%;
+    position: fixed;
+    border-right: 2px solid;
+    top: 90px;
+    left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-bar-item + .search-bar-item {
+    margin-top: 60px;
+}
+
+.search-bar-item {
+    font-size: 20px;
+}
+
+.product-search-name {
+    margin-top: 60px;
+}
+
+#product-search-name {
+    padding-left: 5px;
+}
+
+.search-bar-item span {
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.search-bar-item input[type='text'] {
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    border: 1px solid;
+    border-radius: 6px;
+}
+
+.search-bar-item input[type='number'] {
+    width: 110px;
+    height: 30px;
+    font-size: 20px;
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+.search-bar-item select {
+    width: 230px;
+    height: 30px;
+    font-size: 20px;
+    border: 1px solid;
+    border-radius: 6px;
+    text-align: center;
+}
+
+#btn-search {
+    font-weight: 600;
+    width: 110px;
+    height: 40px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: auto;
+    font-size: 20px;
+}
+
+.view-products {
+    width: calc(100% - 370px);
+    height: 650px;
+    position: fixed;
+    top: 92px;
+    right: 0px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
+.row-view-products-wapper {
+    display: none;
+    flex-direction: column;
+}
+
+.row-view-products {
+    display: flex;
+    height: 430px;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 950px;
+}
+
+.product-summary {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: azure;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid;
+}
+
+.product-summary + .product-summary {
+    margin-left: 25px;
+}
+
+.product-summary a {
+    text-decoration: none !important;
+    display: block;
+}
+
+.product-summary img {
+    width: 150px;
+    height: 200px;
+    background-size: cover;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+.text-ellipsis {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.text-ellipsis + .text-ellipsis {
+    margin-top: 10px;
+}
+
+.product-summary-name {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+}
+
+.product-summary-price span {
+    color: red;
+}
+
+.product-summary-btns {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.btn-in-summary {
+    height: 40px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.buy-now {
+    width: 100px;
+    text-decoration: none;
+}
+
+.add-to-cart {
+    width: 140px;
+}
+
+.pagination-wapper {
+    margin-top: 50px;
+    width: 100%;
+    display: none;
+}
+
+.pagination {
+    margin: auto;
+}
+
+.pagination button {
+    font-weight: 600;
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.page-node + .page-node {
+    margin-left: 15px;
+}
+
+.notification {
+    color: red;
+    font-weight: 600;
+    margin: auto;
+    display: none;
+    font-size: 50px;
+}
+
+.notification div {
+    text-align: center;
+}

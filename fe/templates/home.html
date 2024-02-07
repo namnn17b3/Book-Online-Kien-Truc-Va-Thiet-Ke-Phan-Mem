@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Book Online</title>
+    <link rel="stylesheet" type="text/css" href="./static/css/common.css">
+    <link rel="icon" type="icon" href="./static/icon/bookonline-icon.ico">
+</head>
+<body style="position: relative;">
+    <div class="user-dashboard-wapper">
+        <div class="user-dashboard">
+            <a class="user-dashboard-item home" href="./home">
+                <button>Home</button>
+            </a>
+            <a class="user-dashboard-item category" href="./category">
+                <button>Category</button>
+            </a>
+            <a class="user-dashboard-item cart" href="#">
+                <button>Cart <span style="color: red">(99+)</span></button>
+            </a>
+            <a class="user-dashboard-item manage-order" href="#">
+                <button>Manage Order</button>
+            </a>
+            <a class="user-dashboard-item personal-info" href="#">
+                <button>Info</button>
+            </a>
+            <a class="user-dashboard-item logout" href="#">
+                <button style="color: red;">Logout</button>
+            </a>
+        </div>
+    </div>
+    <div class="item-content">
+        <div class="search-bar">
+            <div class="search-bar-item product-search-name">
+                <span>Product Name</span>
+                <input type="text" name="product-name" id="product-search-name"/>
+            </div>
+            <div class="search-bar-item product-search-category">
+                <span>Category</span>
+                <select name="product" id="product-search-category">
+                    <option value="0">--- Category ---</option>
+                    <option value="2">Kho sách toán học</option>
+                    <option value="3">Kho sách văn học</option>
+                    <option value="4">Kho truyện trinh thám</option>
+                    <option value="5">Kho sách công nghệ</option>
+                    <option value="6">Kho sách học Tiếng Anh</option>
+                </select>
+            </div>
+            <div class="search-bar-item product-search-min-price">
+                <span>Min Price(VNĐ)</span>
+                <input type="number" name="product-search-min-price" id="product-search-min-price" value="0" min="10000" max="200000" step="1000"/>
+            </div>
+            <div class="search-bar-item product-search-max-price">
+                <span>Max Price(VNĐ)</span>
+                <input type="number" name="product-search-max-price" id="product-search-max-price" value="0" min="10000" max="200000" step="1000"/>
+            </div>
+            <div style="display: flex;" class="search-bar-item">
+                <button id="btn-search">SEARCH</button>
+            </div>
+        </div>
+        <div class="view-products">
+            <div class="notification"></div>
+            <div class="row-view-products-wapper">
+<!--                <div class="row-view-products">-->
+<!--                    <div class="product-summary">-->
+<!--                        <a href="#"></a>-->
+<!--                        <img src="../static/product/image/sach_toan_default.jpg">-->
+<!--                        <div class="text-ellipsis product-summary-name" title="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>-->
+<!--                        <div class="text-ellipsis product-summary-price" title="Price: 200000 VNĐ">Price: <span>200000 VNĐ</span></div>-->
+<!--                        <div class="text-ellipsis product-summary-category" title="Category: Kho sách toán học">Category: Kho sách toán học</div>-->
+<!--                        <div class="text-ellipsis product-summary-quantity" title="Quantity: 10000000000">Quantity: 10000000000</div>-->
+<!--                        <div class="product-summary-btns">-->
+<!--                            <button class="btn-in-summary buy-now">BUY NOW</button>-->
+<!--                            <button class="btn-in-summary add-to-cart">ADD TO CART</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+
+            <div class="pagination-wapper">
+                <div class="pagination">
+<!--                    <button class="page-node">prev</button>-->
+<!--                    <button class="page-node">1</button>-->
+<!--                    <button class="page-node">2</button>-->
+<!--                    <button class="page-node">3</button>-->
+<!--                    <button class="page-node">4</button>-->
+<!--                    <button class="page-node">next</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./static/js/utils.js"></script>
+    <script type="module" src="./static/js/lazyloading.js"></script>
+    <script src="./static/js/pagination.js"></script>
+    <script type="module" src="./static/js/home.js"></script>
+</body>
+</html>
