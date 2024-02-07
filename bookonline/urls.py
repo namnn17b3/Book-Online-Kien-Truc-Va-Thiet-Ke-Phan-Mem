@@ -52,3 +52,4 @@ urlpatterns = [
 
 # handler404 = handle_error_page # or handler404 = 'fe.views.handle_error_page'
 handler404 = fe.views.ErrorPageView.as_view()
+handler500 = fe.views.ErrorPageView.as_view()

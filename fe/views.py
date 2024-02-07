@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpRequest
+from django.urls.exceptions import Resolver404
 
 
 class LoginView(View):
@@ -19,8 +20,12 @@ class CategoryView(View):
 
 
 class ErrorPageView(View):
-    def get(self, request: HttpRequest, exception: Exception):
-        return render(request=request, template_name='error_page.html')
+    def get(self, request: HttpRequest, exception: Exception=None):
+        print(type(exception))
+        context: dict = {'statusCode': 500, 'message': 'Internal Server Error'}
+        if isinstance(exception, Resolver404):
+            context = {'statusCode': 404, 'message': 'Not Found'}
+        return render(request=request, template_name='error_page.html', context=context)
 
 
 # use for BASE_DIR/urls.py:

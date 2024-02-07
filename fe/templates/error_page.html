@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./static/css/error_page.css">
     <link rel="icon" type="icon" href="./static/icon/bookonline-icon.ico">
-    <title>Book Online | 401 Unauthorized</title>
+    <title>Book Online | {{ statusCode }} {{ message }}</title>
     <style>
         * {
             margin: 0;
@@ -25,7 +25,7 @@
 <body>
     <div id="main">
     	<div class="fof">
-        	<h1>401 Unauthorized</h1>
+        	<h1>{{ statusCode }} {{ message }}</h1>
     	</div>
     </div>
 </body>

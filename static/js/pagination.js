@@ -6,12 +6,12 @@ const paginationElement = document.querySelector('.pagination');
 
 function pagination(currentPage, dataResponse, pageNodeHandler) {
     if (dataResponse['items'].length == 0) {
-        paginationElement.style.display = 'none';
+        paginationWapperElement.style.display = 'none';
         return;
     }
     const allPage = dataResponse['allRecords'] % itemInPage == 0 ? dataResponse['allRecords'] / itemInPage : dataResponse['allRecords'] / itemInPage | 0 + 1;
     if (allPage <= 1) {
-        paginationElement.style.display = 'none';
+        paginationWapperElement.style.display = 'none';
         return;
     }
     paginationWapperElement.style.display = 'flex';
