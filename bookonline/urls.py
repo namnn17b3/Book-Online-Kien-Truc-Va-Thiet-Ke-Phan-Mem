@@ -38,11 +38,11 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('authen.urls')),
-    path('', include('catalog.urls')),
-    path('', include('product.urls')),
-    path('', include('cart.urls')),
-    path('', include('fe.urls')),
+    path('bookonline/', include('authen.urls')),
+    path('bookonline/', include('catalog.urls')),
+    path('bookonline/', include('product.urls')),
+    path('bookonline/', include('cart.urls')),
+    path('bookonline/', include('fe.urls')),
     # path('apidocs', SpectacularAPIView.as_view(), name='apidocs'),
     # path('swagger-ui', SpectacularSwaggerView.as_view(url_name='apidocs'), name='swagger-ui'),
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),

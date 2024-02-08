@@ -141,18 +141,26 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'bookonline',
-        'USER': 'namnn17b3',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
-        'PORT': '27017'
+        'ENFORCE_SCHEMA': False,
+        # 'USER': 'namnn17b3',
+        # 'PASSWORD': '12345678',
+        # 'HOST': 'localhost',
+        # 'PORT': '27017',
+        'CLIENT': {
+            'host': 'mongodb://namnn17b3:12345678@localhost:27017/bookonline?authSource=bookonline'
+        },
     },
     'mongodb': {
         'ENGINE': 'djongo',
         'NAME': 'bookonline',
-        'USER': 'namnn17b3',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
-        'PORT': '27017'
+        'ENFORCE_SCHEMA': False,
+        # 'USER': 'namnn17b3',
+        # 'PASSWORD': '12345678',
+        # 'HOST': 'localhost',
+        # 'PORT': '27017',
+        'CLIENT': {
+            'host': 'mongodb://namnn17b3:12345678@localhost:27017/bookonline?authSource=bookonline'
+        },
     },
     'mysql': {
         'ENGINE': 'django.db.backends.mysql',
