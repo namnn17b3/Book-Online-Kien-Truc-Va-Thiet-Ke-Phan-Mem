@@ -1,0 +1,52 @@
+{"_id":{"$oid":"65af967d3dd087ad2204e6aa"},"id":{"$numberInt":"1"},"name":"Can add log entry","content_type_id":{"$numberInt":"1"},"codename":"add_logentry"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6ab"},"id":{"$numberInt":"2"},"name":"Can change log entry","content_type_id":{"$numberInt":"1"},"codename":"change_logentry"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6ac"},"id":{"$numberInt":"3"},"name":"Can delete log entry","content_type_id":{"$numberInt":"1"},"codename":"delete_logentry"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6ad"},"id":{"$numberInt":"4"},"name":"Can view log entry","content_type_id":{"$numberInt":"1"},"codename":"view_logentry"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6b1"},"id":{"$numberInt":"5"},"name":"Can add permission","content_type_id":{"$numberInt":"2"},"codename":"add_permission"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6b2"},"id":{"$numberInt":"6"},"name":"Can change permission","content_type_id":{"$numberInt":"2"},"codename":"change_permission"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6b3"},"id":{"$numberInt":"7"},"name":"Can delete permission","content_type_id":{"$numberInt":"2"},"codename":"delete_permission"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6b4"},"id":{"$numberInt":"8"},"name":"Can view permission","content_type_id":{"$numberInt":"2"},"codename":"view_permission"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6b5"},"id":{"$numberInt":"9"},"name":"Can add group","content_type_id":{"$numberInt":"3"},"codename":"add_group"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6b6"},"id":{"$numberInt":"10"},"name":"Can change group","content_type_id":{"$numberInt":"3"},"codename":"change_group"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6b7"},"id":{"$numberInt":"11"},"name":"Can delete group","content_type_id":{"$numberInt":"3"},"codename":"delete_group"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6b8"},"id":{"$numberInt":"12"},"name":"Can view group","content_type_id":{"$numberInt":"3"},"codename":"view_group"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6b9"},"id":{"$numberInt":"13"},"name":"Can add user","content_type_id":{"$numberInt":"4"},"codename":"add_user"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6ba"},"id":{"$numberInt":"14"},"name":"Can change user","content_type_id":{"$numberInt":"4"},"codename":"change_user"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6bb"},"id":{"$numberInt":"15"},"name":"Can delete user","content_type_id":{"$numberInt":"4"},"codename":"delete_user"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6bc"},"id":{"$numberInt":"16"},"name":"Can view user","content_type_id":{"$numberInt":"4"},"codename":"view_user"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6be"},"id":{"$numberInt":"17"},"name":"Can add content type","content_type_id":{"$numberInt":"5"},"codename":"add_contenttype"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6bf"},"id":{"$numberInt":"18"},"name":"Can change content type","content_type_id":{"$numberInt":"5"},"codename":"change_contenttype"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6c0"},"id":{"$numberInt":"19"},"name":"Can delete content type","content_type_id":{"$numberInt":"5"},"codename":"delete_contenttype"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6c1"},"id":{"$numberInt":"20"},"name":"Can view content type","content_type_id":{"$numberInt":"5"},"codename":"view_contenttype"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6c3"},"id":{"$numberInt":"21"},"name":"Can add session","content_type_id":{"$numberInt":"6"},"codename":"add_session"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6c4"},"id":{"$numberInt":"22"},"name":"Can change session","content_type_id":{"$numberInt":"6"},"codename":"change_session"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6c5"},"id":{"$numberInt":"23"},"name":"Can delete session","content_type_id":{"$numberInt":"6"},"codename":"delete_session"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6c6"},"id":{"$numberInt":"24"},"name":"Can view session","content_type_id":{"$numberInt":"6"},"codename":"view_session"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6c9"},"id":{"$numberInt":"25"},"name":"Can add user","content_type_id":{"$numberInt":"7"},"codename":"add_user"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6ca"},"id":{"$numberInt":"26"},"name":"Can change user","content_type_id":{"$numberInt":"7"},"codename":"change_user"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6cb"},"id":{"$numberInt":"27"},"name":"Can delete user","content_type_id":{"$numberInt":"7"},"codename":"delete_user"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6cc"},"id":{"$numberInt":"28"},"name":"Can view user","content_type_id":{"$numberInt":"7"},"codename":"view_user"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6cd"},"id":{"$numberInt":"29"},"name":"Can add user session","content_type_id":{"$numberInt":"8"},"codename":"add_usersession"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6ce"},"id":{"$numberInt":"30"},"name":"Can change user session","content_type_id":{"$numberInt":"8"},"codename":"change_usersession"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6cf"},"id":{"$numberInt":"31"},"name":"Can delete user session","content_type_id":{"$numberInt":"8"},"codename":"delete_usersession"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6d0"},"id":{"$numberInt":"32"},"name":"Can view user session","content_type_id":{"$numberInt":"8"},"codename":"view_usersession"}
+{"_id":{"$oid":"65b0b631f488443fec37e462"},"id":{"$numberInt":"33"},"name":"Can add catalog","content_type_id":{"$numberInt":"9"},"codename":"add_catalog"}
+{"_id":{"$oid":"65b0b631f488443fec37e463"},"id":{"$numberInt":"34"},"name":"Can change catalog","content_type_id":{"$numberInt":"9"},"codename":"change_catalog"}
+{"_id":{"$oid":"65b0b631f488443fec37e464"},"id":{"$numberInt":"35"},"name":"Can delete catalog","content_type_id":{"$numberInt":"9"},"codename":"delete_catalog"}
+{"_id":{"$oid":"65b0b631f488443fec37e465"},"id":{"$numberInt":"36"},"name":"Can view catalog","content_type_id":{"$numberInt":"9"},"codename":"view_catalog"}
+{"_id":{"$oid":"65b0b631f488443fec37e467"},"id":{"$numberInt":"37"},"name":"Can add product","content_type_id":{"$numberInt":"10"},"codename":"add_product"}
+{"_id":{"$oid":"65b0b631f488443fec37e468"},"id":{"$numberInt":"38"},"name":"Can change product","content_type_id":{"$numberInt":"10"},"codename":"change_product"}
+{"_id":{"$oid":"65b0b631f488443fec37e469"},"id":{"$numberInt":"39"},"name":"Can delete product","content_type_id":{"$numberInt":"10"},"codename":"delete_product"}
+{"_id":{"$oid":"65b0b631f488443fec37e46a"},"id":{"$numberInt":"40"},"name":"Can view product","content_type_id":{"$numberInt":"10"},"codename":"view_product"}
+{"_id":{"$oid":"65b127239f212c971b8d57e6"},"id":{"$numberInt":"41"},"name":"Can add category","content_type_id":{"$numberInt":"9"},"codename":"add_category"}
+{"_id":{"$oid":"65b127239f212c971b8d57e7"},"id":{"$numberInt":"42"},"name":"Can change category","content_type_id":{"$numberInt":"9"},"codename":"change_category"}
+{"_id":{"$oid":"65b127239f212c971b8d57e8"},"id":{"$numberInt":"43"},"name":"Can delete category","content_type_id":{"$numberInt":"9"},"codename":"delete_category"}
+{"_id":{"$oid":"65b127239f212c971b8d57e9"},"id":{"$numberInt":"44"},"name":"Can view category","content_type_id":{"$numberInt":"9"},"codename":"view_category"}
+{"_id":{"$oid":"65b1f91fe5d40de5364119b2"},"id":{"$numberInt":"45"},"name":"Can add product cart","content_type_id":{"$numberInt":"11"},"codename":"add_productcart"}
+{"_id":{"$oid":"65b1f91fe5d40de5364119b3"},"id":{"$numberInt":"46"},"name":"Can change product cart","content_type_id":{"$numberInt":"11"},"codename":"change_productcart"}
+{"_id":{"$oid":"65b1f91fe5d40de5364119b4"},"id":{"$numberInt":"47"},"name":"Can delete product cart","content_type_id":{"$numberInt":"11"},"codename":"delete_productcart"}
+{"_id":{"$oid":"65b1f91fe5d40de5364119b5"},"id":{"$numberInt":"48"},"name":"Can view product cart","content_type_id":{"$numberInt":"11"},"codename":"view_productcart"}
+{"_id":{"$oid":"65b8f97331670d21292c93a3"},"id":{"$numberInt":"49"},"name":"Can add cart product","content_type_id":{"$numberInt":"11"},"codename":"add_cartproduct"}
+{"_id":{"$oid":"65b8f97331670d21292c93a4"},"id":{"$numberInt":"50"},"name":"Can change cart product","content_type_id":{"$numberInt":"11"},"codename":"change_cartproduct"}
+{"_id":{"$oid":"65b8f97331670d21292c93a5"},"id":{"$numberInt":"51"},"name":"Can delete cart product","content_type_id":{"$numberInt":"11"},"codename":"delete_cartproduct"}
+{"_id":{"$oid":"65b8f97331670d21292c93a6"},"id":{"$numberInt":"52"},"name":"Can view cart product","content_type_id":{"$numberInt":"11"},"codename":"view_cartproduct"}

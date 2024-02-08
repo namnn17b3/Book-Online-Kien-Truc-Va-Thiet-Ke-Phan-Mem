@@ -1,0 +1,11 @@
+{"_id":{"$oid":"65af967d3dd087ad2204e6a9"},"id":{"$numberInt":"1"},"app_label":"admin","model":"logentry"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6ae"},"id":{"$numberInt":"2"},"app_label":"auth","model":"permission"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6af"},"id":{"$numberInt":"3"},"app_label":"auth","model":"group"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6b0"},"id":{"$numberInt":"4"},"app_label":"auth","model":"user"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6bd"},"id":{"$numberInt":"5"},"app_label":"contenttypes","model":"contenttype"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6c2"},"id":{"$numberInt":"6"},"app_label":"sessions","model":"session"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6c7"},"id":{"$numberInt":"7"},"app_label":"users","model":"user"}
+{"_id":{"$oid":"65af967d3dd087ad2204e6c8"},"id":{"$numberInt":"8"},"app_label":"users","model":"usersession"}
+{"_id":{"$oid":"65b0b631f488443fec37e461"},"id":{"$numberInt":"9"},"app_label":"catalog","model":"category"}
+{"_id":{"$oid":"65b0b631f488443fec37e466"},"id":{"$numberInt":"10"},"app_label":"product","model":"product"}
+{"_id":{"$oid":"65b1f91fe5d40de5364119b1"},"id":{"$numberInt":"11"},"app_label":"cart","model":"cartproduct"}

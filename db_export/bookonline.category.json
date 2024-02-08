@@ -1,0 +1,5 @@
+{"_id":{"$oid":"65b12f20ae3d48e2f32692f8"},"id":{"$numberInt":"2"},"title":"Kho sách toán học","description":"Giúp bạn khám phá thế giới toán học","image":"toan_hoc_category.jpg"}
+{"_id":{"$oid":"65b12f80ae3d48e2f32692f9"},"id":{"$numberInt":"3"},"title":"Kho sách văn học","description":"Giúp bạn khám phá thế giới văn học","image":"van_hoc_category.jpg"}
+{"_id":{"$oid":"65b12fbcae3d48e2f32692fa"},"id":{"$numberInt":"4"},"title":"Kho truyện trinh thám","description":"Cùng đắm mình vào thê giới trinh thám bí ẩn","image":"trinh_tham_category.jpg"}
+{"_id":{"$oid":"65b12fefae3d48e2f32692fb"},"id":{"$numberInt":"5"},"title":"Kho sách công nghệ","description":"Giúp bạn hiểu biết hơn về công nghệ hiện đại","image":"cong_nghe_category.jpg"}
+{"_id":{"$oid":"65b13018ae3d48e2f32692fc"},"id":{"$numberInt":"6"},"title":"Kho sách học Tiếng Anh","description":"Giúp bạn nâng cao trình độ tiếng Anh của mình","image":"tieng_anh_category.jpg"}
