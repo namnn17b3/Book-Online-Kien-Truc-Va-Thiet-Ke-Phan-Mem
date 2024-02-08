@@ -104,7 +104,7 @@ class ProductImageSearchView(BaseView):
             return Response(data={'statusCode': 400, 'message': 'Only accept image extend file as jpg, jpeg, png'}, content_type='application/json', status=status.HTTP_400_BAD_REQUEST)
 
         nearest_image = CBIR.search(search_image=image, k=10, T=Product)
-        CBIR.plot(nearest_image=nearest_image, k=10, property='image', data_folder_parent='product', data_folder_children='image')
+        # CBIR.plot(nearest_image=nearest_image, k=10, property='image', data_folder_parent='product', data_folder_children='image')
 
         data_response: dict = {
             'items': [
