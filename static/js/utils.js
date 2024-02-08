@@ -1,6 +1,6 @@
 const port = location.port;
 const domain = document.domain;
-const http = window.location.href.includes('http') ? 'http' : 'https';
+const http = window.location.href.includes('https') ? 'https' : 'http';
 const prefixUrl = `${http}://${domain}:${port}/bookonline/`;
 
 function callAPI(url, method, data=null, handler) {
