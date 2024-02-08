@@ -1,6 +1,7 @@
-const port = 80;
-const domain = 'localhost';
-const prefixUrl = `http://${domain}:${port}/`;
+const port = location.port;
+const domain = document.domain;
+const http = window.location.href.includes('http') ? 'http' : 'https';
+const prefixUrl = `${http}://${domain}:${port}/`;
 
 function callAPI(url, method, data=null, handler) {
     apiUrl = `${prefixUrl}${url}`;
