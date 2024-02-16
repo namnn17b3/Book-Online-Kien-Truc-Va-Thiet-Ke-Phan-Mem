@@ -40,11 +40,11 @@
                 <span>Category</span>
                 <select name="product" id="product-search-category">
                     <option value="0">--- Category ---</option>
-                    <option value="2">Kho sách toán học</option>
-                    <option value="3">Kho sách văn học</option>
-                    <option value="4">Kho truyện trinh thám</option>
-                    <option value="5">Kho sách công nghệ</option>
-                    <option value="6">Kho sách học Tiếng Anh</option>
+<!--                    <option value="2">Kho sách toán học</option>-->
+<!--                    <option value="3">Kho sách văn học</option>-->
+<!--                    <option value="4">Kho truyện trinh thám</option>-->
+<!--                    <option value="5">Kho sách công nghệ</option>-->
+<!--                    <option value="6">Kho sách học Tiếng Anh</option>-->
                 </select>
             </div>
             <div class="search-bar-item product-search-min-price">
@@ -54,6 +54,10 @@
             <div class="search-bar-item product-search-max-price">
                 <span>Max Price(VNĐ)</span>
                 <input type="number" name="product-search-max-price" id="product-search-max-price" value="0" min="10000" max="200000" step="1000"/>
+            </div>
+            <div class="search-bar-item product-search-image-search">
+                <span>Tìm kiếm bằng hình ảnh</span>
+                <input type="file" name="product-search-image-search" id="product-search-image-search"/>
             </div>
             <div style="display: flex;" class="search-bar-item">
                 <button id="btn-search">SEARCH</button>
@@ -93,6 +97,7 @@
     <script src="./static/js/utils.js"></script>
     <script type="module" src="./static/js/lazyloading.js"></script>
     <script src="./static/js/pagination.js"></script>
+    <script src="./static/js/logout.js"></script>
     <script type="module" src="./static/js/home.js"></script>
 </body>
 </html>

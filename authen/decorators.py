@@ -21,16 +21,22 @@ def use_auth(check_session_deleted=True):
             try:
                 accessToken: str = request.headers.get('Authorization')
                 if accessToken is None:
-                    return Response(data={'statusCode': 401, 'message': 'Require Access Token'},
+                    return Response(data={'statusCode': 400, 'message': 'Require Access Token'},
                                     content_type='application/json',
-                                    status=status.HTTP_401_UNAUTHORIZED)
+                                    status=status.HTTP_400_BAD_REQUEST)
 
                 accessToken: str = accessToken.split(' ')[1]
                 # default check
                 if check_session_deleted:
-                    if not jwt.valid_token(accessToken):
-                        return Response(data={'statusCode': 401, 'message': 'Unauthorized'}, content_type='application/json',
+                    jwt_code_check = jwt.valid_token(accessToken)
+                    if jwt_code_check == 1:
+                        return Response(data={'statusCode': 401, 'message': 'Unauthorized'},
+                                        content_type='application/json',
                                         status=status.HTTP_401_UNAUTHORIZED)
+                    elif jwt_code_check == 2:
+                        return Response(data={'statusCode': 400, 'message': 'Unauthorized'},
+                                        content_type='application/json',
+                                        status=status.HTTP_400_BAD_REQUEST)
 
                     session: UserSession = UserSession.objects.filter(access_token=accessToken)
                     if len(session) == 0:

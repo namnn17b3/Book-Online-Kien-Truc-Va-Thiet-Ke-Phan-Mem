@@ -37,7 +37,7 @@ def generate_token(payload: dict) -> str:
     return access_token
 
 
-def valid_token(access_token: str) -> bool:
+def valid_token(access_token: str) -> int:
     try:
         header, payload, signature = access_token.split('.')
         signature_correct = hmacSha256(f'{header}.{payload}')
@@ -46,8 +46,8 @@ def valid_token(access_token: str) -> bool:
 
         payload = json.loads(base64UrlDecode(payload))
         if round(datetime.now().timestamp()) - payload['iat'] > JWT_EXPIRES:
-            return False
+            return 1
     except:
-        return False
+        return 2
 
-    return True
+    return 0

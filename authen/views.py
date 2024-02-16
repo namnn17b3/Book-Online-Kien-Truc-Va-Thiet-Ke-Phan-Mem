@@ -97,9 +97,9 @@ class AuthenAPI:
                 session.save()
             except Exception as error:
                 print(error)
-                return Response(data={'statusCode': 401, 'message': 'Session of user is expire'},
+                return Response(data={'statusCode': 400, 'message': 'Session of user is expire'},
                                 content_type='application/json',
-                                status=status.HTTP_401_UNAUTHORIZED)
+                                status=status.HTTP_400_BAD_REQUEST)
 
             return Response(data={'accessToken': access_token}, content_type='application/json',
                             status=status.HTTP_200_OK)
@@ -115,13 +115,18 @@ class AuthenAPI:
                 address=request.data.get('address')
             )
 
-            if request.data.get('avatar').__str__() != '':
-                user.avatar = f'{generate_sha256_hash(user.email)}.jpg'
-                save_uploaded_file(request.data.get(
-                    'avatar'), AVATAR_USER_DIR, user.avatar)
 
             try:
+                if request.data.get('avatar').__str__() != '':
+                    user.avatar = f'{generate_sha256_hash(user.email)}.jpg'
+
+                # exception if email is exists unique db error
                 user.save()
+
+                if request.data.get('avatar').__str__() != '':
+                    save_uploaded_file(request.data.get(
+                        'avatar'), AVATAR_USER_DIR, user.avatar)
+
                 user = User.objects.get(email=user.email)
                 payload: dict = {
                     "sub": user.id,
@@ -146,7 +151,7 @@ class AuthenAPI:
     class MissingPassword(BaseView):
         def post(self, request: Request, *args, **kwargs):
             email = request.data.get('email')
-            if email is None:
+            if email is None or email == '':
                 return Response(data={'statusCode': 400, 'message': 'Email is not empty'}, content_type='application/json',
                                 status=status.HTTP_400_BAD_REQUEST)
 
@@ -182,8 +187,8 @@ class AuthenAPI:
                 session.delete()
             except Exception as error:
                 print(error)
-                return Response(data={'statusCode': 401, 'message': 'Session of user is expire'}, content_type='application/json',
-                                status=status.HTTP_401_UNAUTHORIZED)
+                return Response(data={'statusCode': 400, 'message': 'Session of user is expire'}, content_type='application/json',
+                                status=status.HTTP_400_BAD_REQUEST)
 
             return Response(data={'statusCode': 200, 'message': 'Logout Success'}, content_type='application/json',
                             status=status.HTTP_200_OK)

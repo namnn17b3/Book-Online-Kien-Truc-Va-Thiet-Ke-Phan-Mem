@@ -99,7 +99,8 @@ class ProductView(BaseView):
 
 
 class ProductImageSearchView(BaseView):
-    def get(self, request: Request, *args, **kwargs):
+    def post(self, request: Request, *args, **kwargs):
+        print(request.data.get('image'))
         image: InMemoryUploadedFile = request.data.get('image')
         if image is None:
             return Response(data={'statusCode': 400, 'message': 'Image not empty'}, content_type='application/json',

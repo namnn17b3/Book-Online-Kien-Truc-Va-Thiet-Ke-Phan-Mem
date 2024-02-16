@@ -19,6 +19,16 @@ class CategoryView(View):
         return render(request=request, template_name='category.html', content_type='text/html')
 
 
+class RegisterView(View):
+    def get(self, request: HttpRequest, *args, **kwargs):
+        return render(request=request, template_name='register.html', content_type='text/html')
+
+
+class MissingPasswordView(View):
+    def get(self, request: HttpRequest, *args, **kwargs):
+        return render(request=request, template_name='missing_password.html', content_type='text/html')
+
+
 class ErrorPageView(View):
     def get(self, request: HttpRequest, exception: Exception=None):
         print(type(exception))

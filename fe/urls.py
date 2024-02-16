@@ -8,4 +8,6 @@ urlpatterns = [
     path('', view=views.HomeView.as_view(), name='fe-home'),
     path('home', view=views.HomeView.as_view(), name='fe-home'),
     path('category', view=views.CategoryView.as_view(), name='fe-category'),
+    path('register', view=views.RegisterView.as_view(), name='fe-register'),
+    path('missing-password', view=views.MissingPasswordView.as_view(), name='fe-missing-password'),
 ]

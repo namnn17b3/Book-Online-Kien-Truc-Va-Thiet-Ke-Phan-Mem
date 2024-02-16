@@ -1,21 +1,21 @@
-const port = location.port;
+const port = location.port ? location.port : 80;
 const domain = document.domain;
 const http = window.location.href.includes('https') ? 'https' : 'http';
 const prefixUrl = `${http}://${domain}:${port}/bookonline/`;
 
-function callAPI(url, method, data=null, handler) {
+async function callAPI(url, method, data=null, handler) {
     apiUrl = `${prefixUrl}${url}`;
-    accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : 'abcxyz';
+    accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : null;
     
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
     
-    xhr.addEventListener("readystatechange", handler);
+    xhr.addEventListener("readystatechange", await handler);
     
     xhr.open(method, apiUrl, true);
     xhr.setRequestHeader("Authorization", `Bearer ${accessToken}`);
     if (data instanceof FormData) {
-        console.log(data.get('jsonData'));
+        console.log(data.get('avatar'));
     }
     else {
         xhr.setRequestHeader("Content-Type", "*/*");
@@ -25,7 +25,7 @@ function callAPI(url, method, data=null, handler) {
 
 function callAPIDowload(url, method, data=null, handler) {
     apiUrl = `${prefixUrl}${url}`;
-    accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : 'abcxyz';
+    accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : null;
 
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
@@ -48,30 +48,48 @@ function redirect(url) {
 }
 
 function home() {
-    redirect(`http://${document.domain}:${location.port}/bookonline`);
+    redirect(`${http}://${domain}:${port}/bookonline`);
 }
 
 function login() {
-    redirect(`http://${document.domain}:${location.port}/bookonline/login`);
+    redirect(`${http}://${domain}:${port}/bookonline/login`);
+}
+
+function refreshToken() {
+    callAPI('api/authen/refresh-token', 'GET', '', function() {
+        if (this.readyState === 4) {
+            const dataResponse = JSON.parse(this.responseText);
+            if (this.status === 200) {
+                localStorage.setItem('accessToken', dataResponse['accessToken']);
+                home();
+            }
+            else {
+                login();
+            }
+        }
+    });
 }
 
 const paths = ['/login', '/register', '/missing-password'];
 
 function authen(path) {
     callAPI('api/authen/me', 'GET', '', function() {
-        if (this.readyState == 4) {
+        if (this.readyState === 4) {
             const dataResponse = JSON.parse(this.responseText);
-            if (this.status != 200) {
-                if (paths.indexOf(path) == -1) {
+            if (this.status !== 200 && this.status !== 401) {
+                if (paths.indexOf(path) === -1) {
                     login();
                 }
             }
-            else {
+            else if (this.status === 200) {
                 for (let p of paths) {
                     if (window.location.href.lastIndexOf(p) > -1) {
                         home();
                     }
                 }
+            }
+            else if (this.status === 401) {
+                refreshToken();
             }
         }
     });

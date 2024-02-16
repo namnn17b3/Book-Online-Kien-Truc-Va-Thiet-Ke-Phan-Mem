@@ -87,6 +87,14 @@ body>div {
     padding-left: 5px;
 }
 
+.product-search-image-search {
+    font-size: 25px;
+}
+
+#product-search-image-search {
+    margin-top: 15px;
+}
+
 .search-bar-item span {
     font-weight: 600;
     margin-right: 15px;

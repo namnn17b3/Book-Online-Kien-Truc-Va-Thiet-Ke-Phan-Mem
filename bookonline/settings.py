@@ -105,7 +105,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'anhnam2730@gmail.com'
 EMAIL_HOST_PASSWORD = 'nngxplqdqheimfoi'
 
-AVATAR_USER_DIR = 'users/static/avatar/'
+AVATAR_USER_DIR = 'static/user/avatar/'
 
 # same site setting
 # SESSION_COOKIE_SAMESITE = None
