@@ -55,8 +55,8 @@ function login() {
     redirect(`${http}://${domain}:${port}/bookonline/login`);
 }
 
-function refreshToken() {
-    callAPI('api/authen/refresh-token', 'GET', '', function() {
+async function refreshToken() {
+    await callAPI('api/authen/refresh-token', 'GET', '', function() {
         if (this.readyState === 4) {
             const dataResponse = JSON.parse(this.responseText);
             if (this.status === 200) {
@@ -72,8 +72,8 @@ function refreshToken() {
 
 const paths = ['/login', '/register', '/missing-password'];
 
-function authen(path) {
-    callAPI('api/authen/me', 'GET', '', function() {
+async function authen(path) {
+    await callAPI('api/authen/me', 'GET', '', async function() {
         if (this.readyState === 4) {
             const dataResponse = JSON.parse(this.responseText);
             if (this.status !== 200 && this.status !== 401) {
@@ -89,7 +89,7 @@ function authen(path) {
                 }
             }
             else if (this.status === 401) {
-                refreshToken();
+                await refreshToken();
             }
         }
     });

@@ -1,6 +1,6 @@
 import { Lazyloading } from "./lazyloading.js";
 
-authen('/category');
+await authen('/category');
 
 const lazyloading = new Lazyloading();
 const categoriesView = document.querySelector('.categories-view');

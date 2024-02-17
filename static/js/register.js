@@ -1,4 +1,4 @@
-authen('/register');
+await authen('/register');
 
 const btnRegister = document.querySelector('#btn-register');
 const emailInput = document.querySelector('#email');
@@ -8,7 +8,7 @@ const phoneInput = document.querySelector('#phone');
 const addressInput = document.querySelector('#address');
 const avatarInput = document.querySelector('#avatar');
 
-function register() {
+async function register() {
     const email = emailInput.value;
     const username = usernameInput.value;
     const password = passwordInput.value;
@@ -29,7 +29,7 @@ function register() {
         dataSent.append('avatar', '');
     }
 
-    callAPI('api/authen/register', 'POST', dataSent, function() {
+    await callAPI('api/authen/register', 'POST', dataSent, function() {
         if (this.readyState === 4) {
             const dataResponse = JSON.parse(this.responseText);
             if (this.status === 201) {

@@ -1,14 +1,18 @@
-authen('/login');
+// async function nam() {
+    await authen('/login');
+// }
 
-function loginClickHandler() {
+// await nam();
+
+async function loginClickHandler() {
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
 
-    data = JSON.stringify({
+    const data = JSON.stringify({
         'email': email,
         'password': password
     });
-    callAPI('api/authen/login', 'POST', data, function() {
+    await callAPI('api/authen/login', 'POST', data, function() {
         if (this.readyState === 4) {
             const dataResponse = JSON.parse(this.responseText);
             if (this.status === 200) {

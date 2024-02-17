@@ -1,6 +1,6 @@
 import {Lazyloading} from "./lazyloading.js";
 
-authen('/home');
+await authen('/home');
 
 const productNameSearchElement = document.querySelector('#product-search-name');
 const categoryIdSearchElement = document.querySelector('#product-search-category');
