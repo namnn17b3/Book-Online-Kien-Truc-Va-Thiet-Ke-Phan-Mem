@@ -2,6 +2,9 @@ import {Lazyloading} from "./lazyloading.js";
 
 await authen('/home');
 
+var quantitiesCart = 0;
+var btnCartSpan = document.querySelector('.cart button span');
+
 const productNameSearchElement = document.querySelector('#product-search-name');
 const categoryIdSearchElement = document.querySelector('#product-search-category');
 const minPriceSearchElement = document.querySelector('#product-search-min-price');
@@ -20,7 +23,7 @@ const notification = document.querySelector('.notification');
 
 const productSearchCategoryElement = document.querySelector('#product-search-category');
 
-function renderUIUtil(listItem) {
+async function renderUIUtil(listItem) {
     if (listItem.length === 0) {
         rowViewProductsWapper.style.display = 'none';
         notification.style.display = 'block';
@@ -30,7 +33,7 @@ function renderUIUtil(listItem) {
         `;
         return;
     }
-    console.log(listItem);
+    // console.log(listItem);
     rowViewProductsWapper.style.display = 'flex';
     notification.style.display = 'none';
     let html = '';
@@ -47,6 +50,7 @@ function renderUIUtil(listItem) {
                 <div class="text-ellipsis product-summary-category" title="Category: ${item.category}">Category: ${item.category}</div>
                 <div class="text-ellipsis product-summary-quantity" title="Quantity: ${Number(item.quantity).toLocaleString('vi-VN')}">Quantity: ${Number(item.quantity).toLocaleString('vi-VN')}</div>
                 <div class="product-summary-btns">
+                    <div style="display: none;">${item.id}</div>
                     <button class="btn-in-summary buy-now">BUY NOW</button>
                     <button class="btn-in-summary add-to-cart">ADD TO CART</button>
                 </div>
@@ -55,6 +59,7 @@ function renderUIUtil(listItem) {
         html += i % 3 === 2 ? '</div>' : '';
     }
     rowViewProductsWapper.innerHTML = html;
+    await cart();
 }
 
 async function renderProductUI(q = false) {
@@ -102,7 +107,7 @@ async function renderProductUI(q = false) {
             try {
                 dataResponse = JSON.parse(this.responseText);
                 if (this.status === 200) {
-                    renderUIUtil(dataResponse['items']);
+                    await renderUIUtil(dataResponse['items']);
                     pagination(page, dataResponse, renderProductUI);
                 } else {
                     setTimeout(() => {
@@ -157,14 +162,14 @@ async function callAPIGetCategories(resolve) {
 }
 
 window.addEventListener('popstate', async function (event) {
-    console.log(event.state); // or console.log(window.history.state);
+    // console.log(event.state); // or console.log(window.history.state);
     const data = event.state;
     page = data.page;
     productNameSearchElement.value = data.name;
     categoryIdSearchElement.value = data.categoryId;
     minPriceSearchElement.value = data.minPrice;
     maxPriceSearchElement.value = data.maxPrice;
-    renderUIUtil(data.dataResponse['items']);
+    await renderUIUtil(data.dataResponse['items']);
     pagination(page, data.dataResponse, renderProductUI);
 }, false);
 
@@ -184,6 +189,49 @@ async function renderCategories() {
         alert(dataResponse['message']);
     }
 }
+
+async function getQuantitiesCart() {
+    const promiseGetQuantitiesCart = new Promise(async function(resolve, reject) {
+        await callAPI('api/catalog?itemInPage=10&page=1', 'GET', '', async function () {
+            if (this.readyState === 4) {
+                resolve(this);
+            }
+        });
+    });
+    const xhr = await promiseGetQuantitiesCart;
+    const dataResponse = JSON.parse(xhr.responseText);
+    if (xhr.status === 200) {
+        quantitiesCart = dataResponse['allRecords'];
+        btnCartSpan.innerText = quantitiesCart > 99 ? '(99+)' : `(${quantitiesCart})`;
+    }
+    else {
+        alert(dataResponse['message']);
+    }
+}
+
+async function cart() {
+    document.querySelectorAll('.add-to-cart').forEach(item => {
+        item.onclick = async () => {
+            const productId = parseInt(item.parentElement.firstElementChild.innerText);
+            const dataRequest = JSON.stringify({
+                productId: productId
+            });
+            await callAPI('api/user/cart', 'POST', dataRequest, async function () {
+                if (this.readyState === 4) {
+                    console.log(this.responseText);
+                    const dataResponse = JSON.parse(this.responseText);
+                    if (this.status === 200) {
+                        quantitiesCart++;
+                        btnCartSpan.innerText = quantitiesCart > 99 ? '(99+)' : `(${quantitiesCart})`;
+                    }
+                    alert(dataResponse['message']);
+                }
+            });
+        }
+    });
+}
+
+getQuantitiesCart();
 
 await renderCategories();
 

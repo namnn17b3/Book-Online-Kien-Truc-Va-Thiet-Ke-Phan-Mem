@@ -1,8 +1,4 @@
-// async function nam() {
-    await authen('/login');
-// }
-
-// await nam();
+await authen('/login');
 
 async function loginClickHandler() {
     const email = document.querySelector('#email').value;

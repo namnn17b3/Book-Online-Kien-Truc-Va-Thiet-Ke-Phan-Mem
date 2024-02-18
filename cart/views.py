@@ -32,23 +32,23 @@ class CategoryUserView(BaseView):
         cart_product = [(item, Product.objects.get(id=item.product_id)) for item in queryset[start:end]]
 
         data_response = {
-            'user_id': user.id,
+            'userId': user.id,
             'page': page,
             'itemInPage': item_in_page,
             'allRecords': len(queryset),
             'items': [
                 {
-                    'product_id': item[1].id,
+                    'productId': item[1].id,
                     'name': item[1].name,
                     'author': item[1].author,
-                    'publish_date': item[1].publish_date.strftime('%d/%m/%Y'),
+                    'publishDate': item[1].publish_date.strftime('%d/%m/%Y'),
                     'price': item[1].price,
                     'image': item[1].image,
                     'quantity': item[0].quantity,
                     'category': item[1].category.title,
-                    'created_at': item[0].created_at.replace(tzinfo=pytz.utc).astimezone(TIME_ZONE_APP).strftime(
+                    'createdAt': item[0].created_at.replace(tzinfo=pytz.utc).astimezone(TIME_ZONE_APP).strftime(
                         '%d/%m/%Y %H:%M:%S'),
-                    'updated_at': item[0].updated_at.replace(tzinfo=pytz.utc).astimezone(TIME_ZONE_APP).strftime(
+                    'updatedAt': item[0].updated_at.replace(tzinfo=pytz.utc).astimezone(TIME_ZONE_APP).strftime(
                         '%d/%m/%Y %H:%M:%S')
                 }
                 for item in cart_product
