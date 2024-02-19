@@ -4,8 +4,8 @@ const http = window.location.href.includes('https') ? 'https' : 'http';
 const prefixUrl = `${http}://${domain}:${port}/bookonline/`;
 
 async function callAPI(url, method, data=null, handler) {
-    apiUrl = `${prefixUrl}${url}`;
-    accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : null;
+    const apiUrl = `${prefixUrl}${url}`;
+    const accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : null;
     
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
@@ -24,8 +24,8 @@ async function callAPI(url, method, data=null, handler) {
 }
 
 function callAPIDowload(url, method, data=null, handler) {
-    apiUrl = `${prefixUrl}${url}`;
-    accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : null;
+    const apiUrl = `${prefixUrl}${url}`;
+    const accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : null;
 
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;

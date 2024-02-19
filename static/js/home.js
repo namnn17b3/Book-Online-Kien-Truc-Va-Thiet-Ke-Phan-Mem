@@ -153,14 +153,6 @@ btnSearch.onclick = async () => {
     await renderProductUI(true);
 }
 
-async function callAPIGetCategories(resolve) {
-    await callAPI('api/catalog?itemInPage=10&page=1', 'GET', '', async function () {
-        if (this.readyState === 4) {
-            resolve(this);
-        }
-    });
-}
-
 window.addEventListener('popstate', async function (event) {
     // console.log(event.state); // or console.log(window.history.state);
     const data = event.state;
@@ -172,6 +164,14 @@ window.addEventListener('popstate', async function (event) {
     await renderUIUtil(data.dataResponse['items']);
     pagination(page, data.dataResponse, renderProductUI);
 }, false);
+
+async function callAPIGetCategories(resolve) {
+    await callAPI('api/catalog?itemInPage=10&page=1', 'GET', '', async function () {
+        if (this.readyState === 4) {
+            resolve(this);
+        }
+    });
+}
 
 async function renderCategories() {
     const promiseCategory = new Promise(async function(resolve, reject) {
@@ -192,7 +192,7 @@ async function renderCategories() {
 
 async function getQuantitiesCart() {
     const promiseGetQuantitiesCart = new Promise(async function(resolve, reject) {
-        await callAPI('api/catalog?itemInPage=10&page=1', 'GET', '', async function () {
+        await callAPI('api/user/cart', 'GET', '', async function () {
             if (this.readyState === 4) {
                 resolve(this);
             }
