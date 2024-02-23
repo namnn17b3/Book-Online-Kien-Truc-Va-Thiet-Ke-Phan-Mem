@@ -8,7 +8,7 @@ const categoriesView = document.querySelector('.categories-view');
 const notification = document.querySelector('.notification');
 
 function renderUIUtil(listItem) {
-    if (listItem.length == 0) {
+    if (listItem.length === 0) {
         notification.style.display = 'block';
         categoriesView.style.display = 'none';
         return;
@@ -18,11 +18,11 @@ function renderUIUtil(listItem) {
     let html = '';
     for (let i = 0; i < listItem.length; i++) {
         const item = listItem[i];
-        html += i % 3 == 0 ? '<div class="row-category-view">' : '';
+        html += i % 3 === 0 ? '<div class="row-category-view">' : '';
         html += `
             <div class="category-view-item">
                 <a class="category-view-item-img-wapper" href="./home?page=1&categoryId=${item.id}">
-                    <img class="category-view-item-img" src="${item.image}">
+                    <img class="category-view-item-img" src="${item.image}" alt="">
                 </a>
                 <div class="category-view-item-text-content">
                     <div class="text-ellipsis category-view-item-title" title="${item.title}">${item.title}</div>
@@ -30,19 +30,18 @@ function renderUIUtil(listItem) {
                 </div>
             </div>
         `;
-        html += i % 3 == 2 ? '</div>' : '';
+        html += i % 3 === 2 ? '</div>' : '';
     }
     categoriesView.innerHTML = html;
 }
 
-function renderUI(q=false) {
+async function renderUI(q=false) {
     let apiURL = `api/catalog?itemInPage=${itemInPage}&page=${page}`;
     let queryParams = `?page=${page}`;
 
-    callAPI(apiURL, 'GET', '', async function() {
+    await callAPI(apiURL, 'GET', '', async function() {
         lazyloading.show();
         if (this.readyState === 4) {
-            console.log(this.responseText);
             await sleep(500);
             lazyloading.close();
             try {
@@ -70,4 +69,6 @@ function renderUI(q=false) {
     }
 }
 
-renderUI();
+await renderUI();
+
+await getQuantitiesCart();

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category | Book Online</title>
+    <link rel="stylesheet" type="text/css" href="./static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/cart.css">
+    <link rel="icon" type="icon" href="./static/icon/bookonline-icon.ico">
+</head>
+<body style="position: relative;">
+    <div class="user-dashboard-wapper">
+        <div class="user-dashboard">
+            <a class="user-dashboard-item home" href="./home">
+                <button>Home</button>
+            </a>
+            <a class="user-dashboard-item category" href="./category">
+                <button>Category</button>
+            </a>
+            <a class="user-dashboard-item cart" href="./cart">
+                <button>Cart <span style="color: red"></span></button>
+            </a>
+            <a class="user-dashboard-item manage-order" href="#">
+                <button>Manage Order</button>
+            </a>
+            <a class="user-dashboard-item personal-info" href="#">
+                <button>Info</button>
+            </a>
+            <a class="user-dashboard-item logout" href="#">
+                <button style="color: red;">Logout</button>
+            </a>
+        </div>
+    </div>
+    <div class="item-content">
+        <div class="notification"></div>
+        <div class="cart-view">
+            <table class="cart-table" border="2px solid">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Author</th>
+                        <th>Publish Date</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Category</th>
+                        <th>Updated At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+<!--                    <tr>-->
+<!--                        <td class="cart-stt" title="1"><span>1</span></td>-->
+<!--                        <td class="cart-image">-->
+<!--                            <span><a href="./product/1"><img src="./static/product/image/sach_cong_nghe_1.jpg" alt=""></a></span>-->
+<!--                        </td>-->
+<!--                        <td class="cart-name" title="Sách công nghệ 1"><span>Sách công nghệ 1</span></td>-->
+<!--                        <td class="cart-author" title="Nguyễn Ngọc Nam"><span>Nguyễn Ngọc Nam</span></td>-->
+<!--                        <td class="cart-publish-date" title="01/01/2002"><span>01/01/2002</span></td>-->
+<!--                        <td class="cart-price" title="10.000 VNĐ"><span>10.000 <span style="color: red;">VNĐ</span></span></td>-->
+<!--                        <td class="cart-quantity" title="1">-->
+<!--                            <span>-->
+<!--                                <input class="cart-quantity-input" max="200" min="1" type="number" value="1"/>-->
+<!--                            </span>-->
+<!--                        </td>-->
+<!--                        <td class="cart-category" title="Kho sách công nghệ"><span>Kho sách công nghệ</span></td>-->
+<!--                        <td class="cart-updated-at" title="01/01/2024 06:06:06"><span>01/01/2024 06:06:06</span></td>-->
+<!--                        <td class="cart-delete-product">-->
+<!--                            <span>-->
+<!--                                <button>DELETE</button>-->
+<!--                            </span>-->
+<!--                        </td>-->
+<!--                        <div class="cart-product-id" style="display: none;">1</div>-->
+<!--                    </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination-wapper">
+            <div class="pagination"></div>
+        </div>
+    </div>
+
+    <script src="./static/js/utils.js"></script>
+    <script type="module" src="./static/js/lazyloading.js"></script>
+    <script src="./static/js/pagination.js"></script>
+    <script src="./static/js/logout.js"></script>
+    <script src="./static/js/cart.js"></script>
+    <script type="module" src="./static/js/cart_main.js"></script>
+</body>
+</html>

@@ -9,8 +9,9 @@ function pagination(currentPage, dataResponse, pageNodeHandler) {
         paginationWapperElement.style.display = 'none';
         return;
     }
-    const allPage = dataResponse['allRecords'] % itemInPage === 0 ? dataResponse['allRecords'] / itemInPage : dataResponse['allRecords'] / itemInPage | 0 + 1;
-    if (allPage <= 1) {
+    const allPage = dataResponse['allRecords'] % itemInPage === 0 ? dataResponse['allRecords'] / itemInPage : parseInt(dataResponse['allRecords'] / itemInPage) + 1;
+    console.log(dataResponse);
+    if (!allPage || allPage <= 1) {
         paginationWapperElement.style.display = 'none';
         return;
     }

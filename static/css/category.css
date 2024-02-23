@@ -3,7 +3,7 @@
     margin-top: 0px;
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
+    overflow: auto;
     padding-bottom: 50px;
     display: flex;
     flex-direction: column;
@@ -68,7 +68,7 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     word-break: break-word;
-    overflow-y: scroll;
+    overflow: auto;
 }
 
 .category-view-item-description::-webkit-scrollbar {

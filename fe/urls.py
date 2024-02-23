@@ -10,4 +10,5 @@ urlpatterns = [
     path('category', view=views.CategoryView.as_view(), name='fe-category'),
     path('register', view=views.RegisterView.as_view(), name='fe-register'),
     path('missing-password', view=views.MissingPasswordView.as_view(), name='fe-missing-password'),
+    path('cart', view=views.CartView.as_view(), name='fe-cart'),
 ]

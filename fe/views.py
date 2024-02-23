@@ -38,6 +38,11 @@ class ErrorPageView(View):
         return render(request=request, template_name='error_page.html', context=context)
 
 
+class CartView(View):
+    def get(self, request: HttpRequest, exception: Exception = None):
+        return render(request=request, template_name='cart.html')
+
+
 # use for BASE_DIR/urls.py:
 # handler404 = handle_error_page # or handler404 = 'fe.views.handle_error_page'
 # def handle_error_page(request: HttpRequest, exception: Exception):

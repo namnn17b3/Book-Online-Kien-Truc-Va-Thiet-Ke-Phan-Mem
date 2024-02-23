@@ -1,9 +1,7 @@
 import {Lazyloading} from "./lazyloading.js";
+import {RecognitionUi} from "./recognition_ui.js";
 
 await authen('/home');
-
-var quantitiesCart = 0;
-var btnCartSpan = document.querySelector('.cart button span');
 
 const productNameSearchElement = document.querySelector('#product-search-name');
 const categoryIdSearchElement = document.querySelector('#product-search-category');
@@ -18,6 +16,7 @@ maxPriceSearchElement.value = urlSearchParams.get('maxPrice') ? urlSearchParams.
 let rowViewProductsWapper = document.querySelector('.row-view-products-wapper');
 const btnSearch = document.querySelector('#btn-search');
 const lazyloading = new Lazyloading();
+const recognitionUI = new RecognitionUi();
 
 const notification = document.querySelector('.notification');
 
@@ -42,8 +41,8 @@ async function renderUIUtil(listItem) {
         html += i % 3 === 0 ? '<div class="row-view-products">' : '';
         html += `
             <div class="product-summary">
-                <a href="./${item.id}" style="display: flex;">
-                    <img src="${item.image}">
+                <a href="./product/${item.id}" style="display: flex;">
+                    <img src="${item.image}" alt="">
                 </a>
                 <div class="text-ellipsis product-summary-name" title="${item.name}">${item.name}</div>
                 <div class="text-ellipsis product-summary-price" title="Price: ${Number(item.price).toLocaleString('vi-VN')} VNĐ">Price: <span>${Number(item.price).toLocaleString('vi-VN')} VNĐ</span></div>
@@ -59,10 +58,11 @@ async function renderUIUtil(listItem) {
         html += i % 3 === 2 ? '</div>' : '';
     }
     rowViewProductsWapper.innerHTML = html;
-    await cart();
+    const productNameElement = document.querySelectorAll('.product-summary-name');
+    await cart(productNameElement);
 }
 
-async function renderProductUI(q = false) {
+async function renderProductUI(q = false, voice=false) {
     const imageSearch = imageSearchElement.files[0];
     let apiURL = `api/product/?itemInPage=${itemInPage}&page=${page}`;
     let dataSent = '';
@@ -74,7 +74,7 @@ async function renderProductUI(q = false) {
     const minPrice = parseInt(minPriceSearchElement.value);
     const maxPrice = parseInt(maxPriceSearchElement.value);
 
-    if (!imageSearch) {
+    if (!imageSearch && !voice) {
         if (productName) {
             apiURL += `&name=${encodeURIComponent(productName)}`;
             queryParams += `&name=${encodeURIComponent(productName)}`;
@@ -91,11 +91,16 @@ async function renderProductUI(q = false) {
             apiURL += `&maxPrice=${maxPrice}`;
             queryParams += `&maxPrice=${maxPrice}`;
         }
-    } else {
+    } else if (imageSearch && !voice) {
         apiURL = 'api/product/image-search';
         method = 'POST';
         dataSent = new FormData();
         dataSent.append('image', imageSearch);
+    }
+    else if (voice) {
+        apiURL = `api/product/voice-search?text=${encodeURIComponent(voice)}`;
+        method = 'GET';
+        dataSent = '';
     }
     await callAPI(apiURL, method, dataSent, async function () {
         lazyloading.show();
@@ -131,10 +136,20 @@ async function renderProductUI(q = false) {
                         minPrice: minPriceSearchElement.value,
                         maxPrice: maxPriceSearchElement.value,
                     }, '', queryParams);
-                } else {
+                } else if (!voice) {
                     const contextPath = 'bookonline/';
                     const path = window.location.href.substring(window.location.href.lastIndexOf(contextPath) + contextPath.length);
                     window.history.replaceState({
+                        page: page,
+                        dataResponse: dataResponse,
+                        name: productNameSearchElement.value,
+                        categoryId: categoryIdSearchElement.value,
+                        minPrice: minPriceSearchElement.value,
+                        maxPrice: maxPriceSearchElement.value,
+                    }, '', path);
+                } else {
+                    const path = `voice-search?text=${voice}`;
+                    window.history.pushState({
                         page: page,
                         dataResponse: dataResponse,
                         name: productNameSearchElement.value,
@@ -190,49 +205,72 @@ async function renderCategories() {
     }
 }
 
-async function getQuantitiesCart() {
-    const promiseGetQuantitiesCart = new Promise(async function(resolve, reject) {
-        await callAPI('api/user/cart', 'GET', '', async function () {
-            if (this.readyState === 4) {
-                resolve(this);
-            }
-        });
-    });
-    const xhr = await promiseGetQuantitiesCart;
-    const dataResponse = JSON.parse(xhr.responseText);
-    if (xhr.status === 200) {
-        quantitiesCart = dataResponse['allRecords'];
-        btnCartSpan.innerText = quantitiesCart > 99 ? '(99+)' : `(${quantitiesCart})`;
-    }
-    else {
-        alert(dataResponse['message']);
-    }
-}
-
-async function cart() {
-    document.querySelectorAll('.add-to-cart').forEach(item => {
+async function cart(productNameElement) {
+    document.querySelectorAll('.add-to-cart').forEach((item, index) => {
         item.onclick = async () => {
             const productId = parseInt(item.parentElement.firstElementChild.innerText);
             const dataRequest = JSON.stringify({
-                productId: productId
+                productId: productId,
+                quantity: 1
             });
             await callAPI('api/user/cart', 'POST', dataRequest, async function () {
                 if (this.readyState === 4) {
-                    console.log(this.responseText);
                     const dataResponse = JSON.parse(this.responseText);
                     if (this.status === 200) {
-                        quantitiesCart++;
-                        btnCartSpan.innerText = quantitiesCart > 99 ? '(99+)' : `(${quantitiesCart})`;
+                        const quantities = dataResponse['quantities'];
+                        btnCartSpan.innerText = quantities > 99 ? '(99+)' : `(${quantities})`;
+                        alert(`Đã thêm sản phẩm:\n"${productNameElement[index].innerText}"\nvào giỏ hàng thành công!`);
                     }
-                    alert(dataResponse['message']);
+                    else {
+                        alert(dataResponse['message']);
+                    }
                 }
             });
         }
     });
 }
 
-getQuantitiesCart();
+function findProductByVoice() {
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = 'vi-VI';
+    recognition.continuous = false;
+
+    const microphone = document.querySelector('#product-search-voice-search');
+    const handleVoice = (text) => {
+        recognitionUI.contentTextElement.title = text;
+        recognitionUI.contentTextElement.innerText = text;
+        setTimeout(() => {
+            recognitionUI.close();
+            renderProductUI(true, text).then(() => {});
+        }, 1300);
+    }
+
+    microphone.onclick = (e) => {
+        e.preventDefault();
+        recognition.start();
+        recognitionUI.show();
+    }
+
+    recognition.onspeechend = () => {
+        recognition.stop();
+    }
+
+    recognition.onerror = (err) => {
+        console.log(err);
+    }
+
+    recognition.onresult = (e) => {
+        handleVoice(e.results[0][0].transcript);
+    }
+}
+
+findProductByVoice();
 
 await renderCategories();
 
 await renderProductUI();
+
+await getQuantitiesCart();

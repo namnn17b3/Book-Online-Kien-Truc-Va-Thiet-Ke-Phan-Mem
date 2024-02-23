@@ -13,9 +13,15 @@ from users.models import User
 from product.models import Product
 from .models import *
 from django.db import transaction
+from datetime import datetime
 
 
 # Create your views here.
+
+
+LIMIT_QUANTITY = 200
+LIMIT_QUANTITY_ADDED = 50
+
 
 class CategoryUserView(BaseView):
 
@@ -64,25 +70,33 @@ class CategoryUserView(BaseView):
         try:
             with transaction.atomic(using='mysql'):
                 product_id = int(request.data.get('productId') + 0)
+                quantity = int(request.data.get('quantity') + 0)
+                if quantity > LIMIT_QUANTITY_ADDED or quantity <= 0:
+                    raise AppException(message=f'Quantity Added must be in range (1; {LIMIT_QUANTITY_ADDED})')
+
                 cart_product: CartProduct = CartProduct.objects.filter(user_id=user.id).filter(product_id=product_id)
                 if len(cart_product) == 0:
-                    cart_product = CartProduct(user_id=user.id, product_id=product_id, quantity=1)
+                    cart_product = CartProduct(user_id=user.id, product_id=product_id, quantity=quantity)
                     cart_product.save()
                 else:
                     cart_product = cart_product[0]
-                    cart_product.quantity = cart_product.quantity + 1
+                    cart_product.quantity = cart_product.quantity + quantity
                     cart_product.save()
         except Exception as error:
             print(error)
             raise error
 
-        return Response(data={'message': 'Add product to cart successfully'}, content_type='application/json',
+        quantities = len(CartProduct.objects.all())
+        return Response(data={'message': 'Add product to cart successfully', 'quantities': quantities}, content_type='application/json',
                         status=status.HTTP_200_OK)
 
 
     @transaction.atomic
     @method_decorator(use_auth())
     def put(self, request: Request, *args, **kwargs):
+        access_token = request.headers.get('Authorization').split(' ')[1]
+        user: User = getUserFromToken(accessToken=access_token)
+
         items: list = request.data.get('items')
         if items is None:
             raise AppException(message='Require Items not null')
@@ -90,28 +104,42 @@ class CategoryUserView(BaseView):
         if len(items) > MAX_LEN_ITEMS_REQUEST_DTO:
             raise AppException(message=f'Items size less or equals {MAX_LEN_ITEMS_REQUEST_DTO}')
 
+        items_response = []
         try:
             with transaction.atomic(using='mysql'):
                 for item in items:
                     product_id = int(item.get('productId') + 0)
-                    cart_product = CartProduct.objects.filter(product_id=product_id)
+                    cart_product = CartProduct.objects.filter(user_id=user.id, product_id=product_id)
                     if len(cart_product) == 0:
                         raise AppException(message='Product not exists')
 
                     quantity = int(item.get('quantity') + 0)
+                    if quantity > LIMIT_QUANTITY or quantity <= 0:
+                        raise AppException(message=f'Quantity must be in range (1; {LIMIT_QUANTITY_ADDED})')
+
                     cart_product = cart_product[0]
                     cart_product.quantity = quantity
+                    cart_product.updated_at = datetime.utcnow()
                     cart_product.save()
+                    items_response.append({
+                        'productId': product_id,
+                        'updatedAt': cart_product.updated_at.replace(tzinfo=pytz.utc).astimezone(TIME_ZONE_APP).strftime(
+                            '%d/%m/%Y %H:%M:%S')
+                    })
         except AppException as error:
             print(error)
             raise error
 
-        return Response(data={'status': 200, 'message': 'Update cart successfully'}, content_type='application/json', status=status.HTTP_200_OK)
+        return Response(data={'status': 200, 'message': 'Update cart successfully', 'items': items_response},
+                        content_type='application/json', status=status.HTTP_200_OK)
 
 
     @transaction.atomic
     @method_decorator(use_auth())
     def delete(self, request: Request, *args, **kwargs):
+        access_token = request.headers.get('Authorization').split(' ')[1]
+        user: User = getUserFromToken(accessToken=access_token)
+
         items: list = request.data.get('items')
         if items is None:
             raise AppException(message='Require Items not null')
@@ -123,7 +151,7 @@ class CategoryUserView(BaseView):
             with transaction.atomic(using='mysql'):
                 for item in items:
                     product_id = int(item.get('productId') + 0)
-                    cart_product = CartProduct.objects.filter(product_id=product_id)
+                    cart_product = CartProduct.objects.filter(user_id=user.id, product_id=product_id)
                     if len(cart_product) == 0:
                         raise AppException(message='Product not exists')
 

@@ -98,3 +98,53 @@ async function authen(path) {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+function debounce(callback, delay) {
+    let timeout = null;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            if (callback instanceof Promise) {
+                callback(...args).then(() => {});
+            }
+            else {
+                callback(...args);
+            }
+        }, delay);
+    }
+}
+
+function throttle(callback, delay) {
+    let shouldWait = false;
+    let lastArgs = null;
+
+    return (...args) => {
+        if (shouldWait) {
+            lastArgs = args;
+            return;
+        }
+
+        if (callback instanceof Promise) {
+            callback(...args).then(() => {});
+        }
+        else {
+            callback(...args);
+        }
+        shouldWait = true;
+        setTimeout(() => {
+            if (lastArgs === null) {
+                shouldWait = false;
+            }
+            else {
+                shouldWait = false;
+                if (callback instanceof Promise) {
+                    callback(...args).then(() => {});
+                }
+                else {
+                    callback(...args);
+                }
+                lastArgs = null;
+            }
+        }, delay);
+    }
+}

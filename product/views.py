@@ -5,6 +5,7 @@ from bookonline.base_view import BaseView
 from .models import Product
 from catalog.models import *
 from cbir import *
+import spacy
 
 # Create your views here.
 
@@ -98,6 +99,9 @@ class ProductView(BaseView):
         return Response(data=data_response, content_type='application/json', status=status.HTTP_200_OK)
 
 
+IMAGE_FILE_EXTEND = ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG']
+
+
 class ProductImageSearchView(BaseView):
     def post(self, request: Request, *args, **kwargs):
         print(request.data.get('image'))
@@ -107,7 +111,13 @@ class ProductImageSearchView(BaseView):
                             status=status.HTTP_400_BAD_REQUEST)
 
         image_name = image.__str__()
-        if not image_name.endswith('.jpg') and not image_name.endswith('.jpeg') and not image_name.endswith('.png'):
+        check_ext_file = False
+        for ext in IMAGE_FILE_EXTEND:
+            if image_name.endswith(ext):
+                check_ext_file = True
+                break
+
+        if not check_ext_file:
             return Response(data={'statusCode': 400, 'message': 'Only accept image extend file as jpg, jpeg, png'},
                             content_type='application/json', status=status.HTTP_400_BAD_REQUEST)
 
@@ -128,4 +138,38 @@ class ProductImageSearchView(BaseView):
             ]
         }
 
+        return Response(data=data_response, content_type='application/json', status=status.HTTP_200_OK)
+
+
+nlp = spacy.load('vi_core_news_lg')
+k = 10
+# vocab[word]
+# nlp(sentence)
+
+
+class ProductVoiceSearchView(BaseView):
+    def get(self, request: Request, *args, **kwargs):
+        text = request.GET.get('text')
+        print(text)
+        if text is None:
+            return Response(data={'statusCode': 400, 'message': 'Text search is not empty'},
+                            content_type='application/json', status=status.HTTP_400_BAD_REQUEST)
+
+        text = nlp(text)
+        products = Product.objects.all()
+        products = sorted(products, key=lambda x: text.similarity(nlp(x.name)))[:k]
+
+        data_response: dict = {
+            'items': [
+                {
+                    'id': item.id,
+                    'name': item.name,
+                    'price': item.price,
+                    'quantity': item.quantity,
+                    'image': f'{item.image}',
+                    'category': item.category.title
+                }
+                for item in products
+            ]
+        }
         return Response(data=data_response, content_type='application/json', status=status.HTTP_200_OK)
