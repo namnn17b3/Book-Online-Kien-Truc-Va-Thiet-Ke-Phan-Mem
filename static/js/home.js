@@ -64,7 +64,7 @@ async function renderUIUtil(listItem) {
 
 async function renderProductUI(q = false, voice=false) {
     const imageSearch = imageSearchElement.files[0];
-    let apiURL = `api/product/?itemInPage=${itemInPage}&page=${page}`;
+    let apiURL = `api/search/product/?itemInPage=${itemInPage}&page=${page}`;
     let dataSent = '';
     let method = 'GET';
     let queryParams = `?page=${page}`;
@@ -92,13 +92,13 @@ async function renderProductUI(q = false, voice=false) {
             queryParams += `&maxPrice=${maxPrice}`;
         }
     } else if (imageSearch && !voice) {
-        apiURL = 'api/product/image-search';
+        apiURL = 'api/search/product/image';
         method = 'POST';
         dataSent = new FormData();
         dataSent.append('image', imageSearch);
     }
     else if (voice) {
-        apiURL = `api/product/voice-search?text=${encodeURIComponent(voice)}`;
+        apiURL = `api/search/product/voice?text=${encodeURIComponent(voice)}`;
         method = 'GET';
         dataSent = '';
     }

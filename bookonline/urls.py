@@ -43,6 +43,7 @@ urlpatterns = [
     path('bookonline/', include('product.urls')),
     path('bookonline/', include('cart.urls')),
     path('bookonline/', include('fe.urls')),
+    path('bookonline/', include('search.urls')),
     # path('apidocs', SpectacularAPIView.as_view(), name='apidocs'),
     # path('swagger-ui', SpectacularSwaggerView.as_view(url_name='apidocs'), name='swagger-ui'),
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
